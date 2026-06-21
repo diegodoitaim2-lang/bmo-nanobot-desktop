@@ -47,3 +47,41 @@ runtime/ffmpeg/ffmpeg.exe
 # Large runtime models (download separately)
 runtime/piper/*.onnx
 runtime/whisper.cpp/Win32/Release/ggml-vulkan.dll
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Archive / old backups
+_archive_cleanup_*
+_archive_*
+
+# Old reports
+BMO_RELATORIO/
+BMO_100_REPORT.md
+BMO_CLEANUP_REPORT.md
+BMO_HEALTH_REPORT.md
+BMO_RECOVERY_REPORT.md
+BMO_EXECUTABLE_FIX_REPORT.md
+SAFE_CLEANUP_REPORT.md
+TEST_REPORT.md
+VM_BUILD_FIX_REPORT.md
+README_CORRECOES.md
+AUDITORIA_BMO.md
+BMO_INTEGRITY_AUDIT.md
+CORRECOES_APLICADAS.md
+PLANO_DE_CORRECAO.md
+GARGALOS_IDENTIFICADOS.md
+RELATORIO_CONTINUIDADE_BMO.md
+BMO_100_REPORT.md
+RESUMO_FINAL.txt
+duplicate_files_to_delete.txt
+all_md5.txt
+TESTE_RAPIDO.md
+ABRIR_BMO.md
+
+# Backend orphans
+backend/bmo_backend_ORIGINAL.py
+backend/bmo_backend_BROKEN_CLEANUP.py
+secrets.local.backup.env
