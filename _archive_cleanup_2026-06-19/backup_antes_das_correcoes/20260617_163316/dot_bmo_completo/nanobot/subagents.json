@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "id": "f3aaf54bab1f",
+      "title": "Subagente: buscar os últimos artigos sobre computação quânt",
+      "task": "buscar os últimos artigos sobre computação quântica e salve o resumo em um arquivo .md.\"",
+      "status": "concluido",
+      "progress": 0,
+      "originChannel": "bmo_desktop",
+      "originChatId": "local",
+      "sessionKey": "bmo_subagent:f3aaf54bab1f",
+      "createdAt": 1781662291,
+      "notified": false,
+      "updatedAt": 1781662396,
+      "result": "Pronto!  \n✅ **Arquivo criado:** `quantum_computing_summary.md`  \n📁 **Local:** `C:\\Users\\USER\\.bmo\\workspace\\quantum_computing_summary.md`\n\nO documento contém um resumo, em português, dos artigos científicos mais recentes (2025‑2026) encontrados em fontes como QMatter, além das principais tendências de mercado e tecnologia descritas em relatórios de 2026.\n\nSe precisar de mais detalhes, quiser acrescentar algum outro artigo ou gerar outro resumo, é só me avisar. Estou à disposição!",
+      "outputPath": "C:\\Users\\USER\\.bmo\\workspace\\subagents\\f3aaf54bab1f.md"
+    }
+  ]
+}

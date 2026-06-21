@@ -1,0 +1,42 @@
+{
+  "sessions": [
+    {
+      "id": "1781036030840",
+      "title": "crie um subagente para pesquisar sobre IA",
+      "createdAt": 1781036030,
+      "messages": [
+        {
+          "role": "user",
+          "text": "crie um subagente para pesquisar sobre IA",
+          "createdAt": 1781036030
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho! Criei um subagente chamado Subagente de Pesquisa sobre IA. Ele já está rodando e vai buscar as informações mais recentes sobre inteligência artificial, tendências, aplicações e novidades. Quando finalizar, você receberá o resultado. Se precisar de algo mais, é só falar!",
+          "createdAt": 1781036030
+        }
+      ],
+      "updatedAt": 1781036030,
+      "preview": "Prontinho! Criei um subagente chamado Subagente de Pesquisa sobre IA. Ele já está rodando e vai buscar as informações mais recentes sobre in"
+    },
+    {
+      "id": "1781036017812",
+      "title": "cria um jogo da velha em Python e abre para mim",
+      "createdAt": 1781036017,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um jogo da velha em Python e abre para mim",
+          "createdAt": 1781036017
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho! Criei o arquivo tic_tac_toe.py aqui no seu workspace. Ele contém um joguinho de velha simples para dois jogadores, com tudo que você precisa: exibição do tabuleiro, verificação de vitória, empate e troca de turnos.\n\nPara jogar, abra um terminal na pasta onde o arquivo foi salvo e execute:\n\npython tic_tac_toe.py\n\nO programa vai pedir a linha e a coluna (de 1 a 3) de cada jogada. Divirta‑se!",
+          "createdAt": 1781036017
+        }
+      ],
+      "updatedAt": 1781036017,
+      "preview": "Prontinho! Criei o arquivo tic_tac_toe.py aqui no seu workspace. Ele contém um joguinho de velha simples para dois jogadores, com tudo que v"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "root": "C:\\Users\\USER\\Documents\\Codex\\bmo",
+  "startedAt": "2026-06-13T23:13:41",
+  "files": 33060,
+  "dirs": 4885,
+  "bytes": 5281004071,
+  "textFilesLineRead": 19203,
+  "binaryFilesByteRead": 13554,
+  "emptyFiles": 303,
+  "lines": 7047121,
+  "errors": [],
+  "largest": [
+    [
+      487601967,
+      "runtime\\whisper.cpp\\models\\ggml-small.bin"
+    ],
+    [
+      487601967,
+      "electron-release\\win-unpacked\\resources\\whisper.cpp\\models\\ggml-small.bin"
+    ],
+    [
+      226869248,
+      "node_modules\\electron\\dist\\electron.exe"
+    ],
+    [
+      226866176,
+      "electron-release\\win-unpacked\\BMO.exe"
+    ],
+    [
+      147951465,
+      "runtime\\whisper.cpp\\models\\ggml-base.bin"
+    ],
+    [
+      147951465,
+      "electron-release\\win-unpacked\\resources\\whisper.cpp\\models\\ggml-base.bin"
+    ],
+    [
+      97825804,
+      "bmo_backend.exe"
+    ],
+    [
+      97494373,
+      "build\\pyinstaller\\work\\bmo_backend\\bmo_backend.pkg"
+    ],
+    [
+      77691713,
+      "runtime\\whisper.cpp\\models\\ggml-tiny.bin"
+    ],
+    [
+      77691713,
+      "electron-release\\win-unpacked\\resources\\whisper.cpp\\models\\ggml-tiny.bin"
+    ],
+    [
+      76737711,
+      "runtime\\piper\\en_GB-semaine-medium.onnx"
+    ],
+    [
+      76737711,
+      "electron-release\\win-unpacked\\resources\\piper\\en_GB-semaine-medium.onnx"
+    ],
+    [
+      64458752,
+      "runtime\\ffmpeg\\ffmpeg.exe"
+    ],
+    [
+      64458752,
+      "electron-release\\win-unpacked\\resources\\ffmpeg\\ffmpeg.exe"
+    ],
+    [
+      63516050,
+      "runtime\\piper\\pt-BR-razo-medium.onnx"
+    ],
+    [
+      63516050,
+      "electron-release\\win-unpacked\\resources\\piper\\pt-BR-razo-medium.onnx"
+    ],
+    [
+      63511038,
+      "runtime\\piper\\pt_BR-sage_13364-medium.onnx"
+    ],
+    [
+      63511038,
+      "runtime\\piper\\miro_pt-BR.onnx"
+    ],
+    [
+      63511038,
+      "runtime\\piper\\dii_pt-BR.onnx"
+    ],
+    [
+      63511038,
+      "runtime\\piper\\bmo.onnx"
+    ],
+    [
+      63511038,
+      "electron-release\\win-unpacked\\resources\\piper\\pt_BR-sage_13364-medium.onnx"
+    ],
+    [
+      63511038,
+      "electron-release\\win-unpacked\\resources\\piper\\miro_pt-BR.onnx"
+    ],
+    [
+      63511038,
+      "electron-release\\win-unpacked\\resources\\piper\\dii_pt-BR.onnx"
+    ],
+    [
+      63511038,
+      "electron-release\\win-unpacked\\resources\\piper\\bmo.onnx"
+    ],
+    [
+      63201294,
+      "runtime\\piper\\pt_BR-faber-medium.onnx"
+    ]
+  ],
+  "finishedAt": "2026-06-13T23:15:02"
+}

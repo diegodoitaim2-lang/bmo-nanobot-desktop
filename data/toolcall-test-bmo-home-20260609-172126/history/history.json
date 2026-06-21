@@ -1,0 +1,65 @@
+{
+  "sessions": [
+    {
+      "id": "test-5ce1ceeca8c342c08e53b66ef2570b7d",
+      "title": "crie um subagente para pesquisar sobre IA",
+      "createdAt": 1781036716,
+      "messages": [
+        {
+          "role": "user",
+          "text": "crie um subagente para pesquisar sobre IA",
+          "createdAt": 1781036716
+        },
+        {
+          "role": "bmo",
+          "text": "Eu nao consegui pensar em uma resposta agora. Tenta me perguntar de novo?",
+          "createdAt": 1781036716
+        }
+      ],
+      "updatedAt": 1781036716,
+      "preview": "Eu nao consegui pensar em uma resposta agora. Tenta me perguntar de novo?"
+    },
+    {
+      "id": "test-0b62f32929fc4fd08628f0f81ed6873d",
+      "title": "cria um jogo da velha em Python e abre para mim",
+      "createdAt": 1781036675,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um jogo da velha em Python e abre para mim",
+          "createdAt": 1781036675
+        },
+        {
+          "role": "bmo",
+          "text": "Aqui está o seu Jogo da Velha em Python, usando Tkinter. O arquivo jogo_da_velha.py foi salvo na sua área de trabalho e já está rodando em uma janela. Divirta‑se!",
+          "createdAt": 1781036675
+        }
+      ],
+      "updatedAt": 1781036675,
+      "preview": "Aqui está o seu Jogo da Velha em Python, usando Tkinter. O arquivo jogo_da_velha.py foi salvo na sua área de trabalho e já está rodando em u"
+    },
+    {
+      "id": "test-95bc73ec540e41d79078f0e440010980",
+      "title": "cria um arquivo chamado teste.txt na área de trabalho",
+      "createdAt": 1781036647,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um arquivo chamado teste.txt na área de trabalho",
+          "createdAt": 1781036647
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Eu criei o arquivo: teste.txt",
+          "createdAt": 1781036647
+        }
+      ],
+      "updatedAt": 1781036647,
+      "preview": "Prontinho. Eu criei o arquivo: teste.txt",
+      "metadata": {
+        "lastFilePath": "C:\\Users\\USER\\Desktop\\teste.txt",
+        "lastFileName": "teste.txt"
+      }
+    }
+  ]
+}

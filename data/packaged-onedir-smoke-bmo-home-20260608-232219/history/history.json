@@ -1,0 +1,23 @@
+{
+  "sessions": [
+    {
+      "id": "1780971748246",
+      "title": "me lembre de beber agua daqui 2 segundos por favor",
+      "createdAt": 1780971748,
+      "messages": [
+        {
+          "role": "user",
+          "text": "me lembre de beber agua daqui 2 segundos por favor",
+          "createdAt": 1780971748
+        },
+        {
+          "role": "bmo",
+          "text": "Combinado. Eu vou te lembrar: beber agua.",
+          "createdAt": 1780971748
+        }
+      ],
+      "updatedAt": 1780971748,
+      "preview": "Combinado. Eu vou te lembrar: beber agua."
+    }
+  ]
+}

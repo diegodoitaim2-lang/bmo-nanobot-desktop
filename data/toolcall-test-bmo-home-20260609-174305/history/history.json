@@ -1,0 +1,69 @@
+{
+  "sessions": [
+    {
+      "id": "mandatory-subagent-final-local",
+      "title": "crie um subagente para pesquisar sobre IA",
+      "createdAt": 1781037827,
+      "messages": [
+        {
+          "role": "user",
+          "text": "crie um subagente para pesquisar sobre IA",
+          "createdAt": 1781037827
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Criei o subagente solicitado e ele ja aparece na lista.",
+          "createdAt": 1781037827
+        }
+      ],
+      "updatedAt": 1781037827,
+      "preview": "Prontinho. Criei o subagente solicitado e ele ja aparece na lista."
+    },
+    {
+      "id": "mandatory-game-final-local",
+      "title": "cria um jogo da velha em Python e abre para mim",
+      "createdAt": 1781037822,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um jogo da velha em Python e abre para mim",
+          "createdAt": 1781037822
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Criei jogo_da_velha.py e abri o jogo para voce.",
+          "createdAt": 1781037822
+        }
+      ],
+      "updatedAt": 1781037822,
+      "preview": "Prontinho. Criei jogo_da_velha.py e abri o jogo para voce.",
+      "metadata": {
+        "lastFilePath": "C:\\Users\\USER\\Desktop\\jogo_da_velha.py",
+        "lastFileName": "jogo_da_velha.py"
+      }
+    },
+    {
+      "id": "mandatory-file-final-local",
+      "title": "cria um arquivo chamado teste.txt na área de trabalho",
+      "createdAt": 1781037821,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um arquivo chamado teste.txt na área de trabalho",
+          "createdAt": 1781037821
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Eu criei o arquivo: teste.txt",
+          "createdAt": 1781037821
+        }
+      ],
+      "updatedAt": 1781037821,
+      "preview": "Prontinho. Eu criei o arquivo: teste.txt",
+      "metadata": {
+        "lastFilePath": "C:\\Users\\USER\\Desktop\\teste.txt",
+        "lastFileName": "teste.txt"
+      }
+    }
+  ]
+}

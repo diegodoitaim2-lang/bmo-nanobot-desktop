@@ -1,0 +1,79 @@
+{
+  "api": {
+    "host": "127.0.0.1",
+    "port": 8900,
+    "timeout": 180
+  },
+  "providers": {
+    "openrouter": {
+      "apiKey": "${OPENROUTER_API_KEY}"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "provider": "openrouter",
+      "model": "openai/gpt-oss-120b:free",
+      "botName": "BMO",
+      "botIcon": "BMO",
+      "timezone": "America/Sao_Paulo",
+      "workspace": "C:/Users/USER/Documents/Codex/bmo/data/toolcall-test-bmo-home-20260609-173934/workspace",
+      "temperature": 0.7,
+      "maxTokens": 4096,
+      "contextWindowTokens": 8192,
+      "reasoningEffort": "medium",
+      "fallbackModels": [
+        {
+          "model": "openai/gpt-oss-20b:free",
+          "provider": "openrouter"
+        },
+        {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "provider": "openrouter"
+        },
+        {
+          "model": "meta-llama/llama-3.2-3b-instruct:free",
+          "provider": "openrouter"
+        },
+        {
+          "model": "qwen/qwen3-coder:free",
+          "provider": "openrouter"
+        }
+      ],
+      "disabledSkills": [],
+      "fallback_models": [
+        {
+          "model": "openai/gpt-oss-20b:free",
+          "provider": "openrouter"
+        },
+        {
+          "model": "meta-llama/llama-3.3-70b-instruct:free",
+          "provider": "openrouter"
+        },
+        {
+          "model": "meta-llama/llama-3.2-3b-instruct:free",
+          "provider": "openrouter"
+        },
+        {
+          "model": "qwen/qwen3-coder:free",
+          "provider": "openrouter"
+        }
+      ],
+      "modelPreset": null
+    }
+  },
+  "whisper": {
+    "gpu_enabled": true,
+    "gpu_index": 0,
+    "model": "tiny",
+    "fallback_to_cpu": true,
+    "tiny_model": "tiny",
+    "small_model": "small"
+  },
+  "piper": {
+    "gpu_enabled": true,
+    "default_voice": "pt_BR-faber-medium.onnx"
+  },
+  "env": {
+    "PATH": "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.4\\bin;${PATH}"
+  }
+}

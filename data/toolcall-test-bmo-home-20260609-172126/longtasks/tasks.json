@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "9f665cda871f",
+      "title": "Subagente de Pesquisa sobre IA",
+      "command": "",
+      "status": "concluido",
+      "progress": 100,
+      "createdAt": 1781036712,
+      "updatedAt": 1781036712,
+      "outputPath": "C:\\Users\\USER\\Documents\\Codex\\bmo\\data\\toolcall-test-bmo-home-20260609-172126\\workspace\\longtask_9f665cda871f.txt",
+      "result": {
+        "ok": true,
+        "message": "Tarefa registrada: Subagente de Pesquisa sobre IA"
+      }
+    }
+  ]
+}

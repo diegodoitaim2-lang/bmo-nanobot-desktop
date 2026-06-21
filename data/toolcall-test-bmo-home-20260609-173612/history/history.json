@@ -1,0 +1,46 @@
+{
+  "sessions": [
+    {
+      "id": "mandatory-game-test",
+      "title": "cria um jogo da velha em Python e abre para mim",
+      "createdAt": 1781037454,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um jogo da velha em Python e abre para mim",
+          "createdAt": 1781037454
+        },
+        {
+          "role": "bmo",
+          "text": "Aqui está seu Jogo da Velha em Python, usando uma janela Tkinter. O programa já foi salvo na sua área de trabalho como jogo_da_velha.py e está sendo executado agora. Boa diversão!",
+          "createdAt": 1781037454
+        }
+      ],
+      "updatedAt": 1781037454,
+      "preview": "Aqui está seu Jogo da Velha em Python, usando uma janela Tkinter. O programa já foi salvo na sua área de trabalho como jogo_da_velha.py e es"
+    },
+    {
+      "id": "mandatory-file-test",
+      "title": "cria um arquivo chamado teste.txt na área de trabalho",
+      "createdAt": 1781037396,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um arquivo chamado teste.txt na área de trabalho",
+          "createdAt": 1781037396
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Eu criei o arquivo: teste.txt",
+          "createdAt": 1781037396
+        }
+      ],
+      "updatedAt": 1781037396,
+      "preview": "Prontinho. Eu criei o arquivo: teste.txt",
+      "metadata": {
+        "lastFilePath": "C:\\Users\\USER\\Desktop\\teste.txt",
+        "lastFileName": "teste.txt"
+      }
+    }
+  ]
+}

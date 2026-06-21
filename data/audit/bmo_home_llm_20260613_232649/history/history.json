@@ -1,0 +1,23 @@
+{
+  "sessions": [
+    {
+      "id": "1781404015899",
+      "title": "responda apenas: ok",
+      "createdAt": 1781404015,
+      "messages": [
+        {
+          "role": "user",
+          "text": "responda apenas: ok",
+          "createdAt": 1781404015
+        },
+        {
+          "role": "bmo",
+          "text": "Ok.",
+          "createdAt": 1781404015
+        }
+      ],
+      "updatedAt": 1781404015,
+      "preview": "Ok."
+    }
+  ]
+}

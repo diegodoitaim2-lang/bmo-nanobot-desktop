@@ -1,0 +1,27 @@
+{
+  "sessions": [
+    {
+      "id": "1781404265284",
+      "title": "cria um jogo da velha em Python e abre para mim",
+      "createdAt": 1781404265,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um jogo da velha em Python e abre para mim",
+          "createdAt": 1781404265
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Criei jogo_da_velha.py e abri o jogo para voce.",
+          "createdAt": 1781404265
+        }
+      ],
+      "updatedAt": 1781404265,
+      "preview": "Prontinho. Criei jogo_da_velha.py e abri o jogo para voce.",
+      "metadata": {
+        "lastFilePath": "C:\\Users\\USER\\Desktop\\jogo_da_velha.py",
+        "lastFileName": "jogo_da_velha.py"
+      }
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "root": "C:\\Users\\USER\\Documents\\Codex\\bmo",
+  "startedAt": "2026-06-09T18:42:53",
+  "filesTotal": 33049,
+  "dirsTotal": 4886,
+  "bytesTotal": 6678025733,
+  "textFilesReadLineByLine": 26106,
+  "binaryFilesReadAsBytes": 6942,
+  "emptyFiles": 304,
+  "lineTotal": 7467371,
+  "errors": [],
+  "largeTextSkippedLineRead": [
+    {
+      "path": "build\\pyinstaller\\bmo_backend\\xref-bmo_backend.html",
+      "bytes": 29881628
+    }
+  ],
+  "samples": [
+    {
+      "path": ".gitignore",
+      "kind": "text",
+      "bytes": 272,
+      "lines": 25
+    },
+    {
+      "path": "AUDITORIA_BMO.md",
+      "kind": "text",
+      "bytes": 8432,
+      "lines": 245
+    },
+    {
+      "path": "backend-audit.pid",
+      "kind": "text",
+      "bytes": 6,
+      "lines": 1
+    },
+    {
+      "path": "backend-dev.err.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-dev.out.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-full-test.err.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-full-test.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-test.err.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-test.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-ui-test.err.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-ui-test.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-voice-test.err.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "backend-voice-test.log",
+      "kind": "empty",
+      "bytes": 0,
+      "lines": 0
+    },
+    {
+      "path": "bmo_backend.exe",
+      "kind": "binary",
+      "bytes": 97825804,
+      "sha256_16": "ea7081fad49be409"
+    },
+    {
+      "path": "BMO_HEALTH_REPORT.md",
+      "kind": "text",
+      "bytes": 697,
+      "lines": 24
+    },
+    {
+      "path": "build-electron.bat",
+      "kind": "text",
+      "bytes": 1079,
+      "lines": 19
+    },
+    {
+      "path": "build-self-contained.bat",
+      "kind": "text",
+      "bytes": 2713,
+      "lines": 32
+    },
+    {
+      "path": "DOCUMENTACAO_BMO_1.0.md",
+      "kind": "text",
+      "bytes": 6058,
+      "lines": 280
+    },
+    {
+      "path": "eslint.config.js",
+      "kind": "text",
+      "bytes": 656,
+      "lines": 22
+    },
+    {
+      "path": "GARGALOS_IDENTIFICADOS.md",
+      "kind": "text",
+      "bytes": 4954,
+      "lines": 229
+    },
+    {
+      "path": "index.html",
+      "kind": "text",
+      "bytes": 351,
+      "lines": 13
+    },
+    {
+      "path": "launch_bmo_dev.vbs",
+      "kind": "text",
+      "bytes": 317,
+      "lines": 5
+    },
+    {
+      "path": "MANUAL_USUARIO.md",
+      "kind": "text",
+      "bytes": 1926,
+      "lines": 64
+    },
+    {
+      "path": "NANOBOT_LICENSE",
+      "kind": "text",
+      "bytes": 1122,
+      "lines": 21
+    },
+    {
+      "path": "NANOBOT_THIRD_PARTY_NOTICES.md",
+      "kind": "text",
+      "bytes": 6424,
+      "lines": 144
+    },
+    {
+      "path": "package-lock.json",
+      "kind": "text",
+      "bytes": 215998,
+      "lines": 6178
+    },
+    {
+      "path": "package.json",
+      "kind": "text",
+      "bytes": 3096,
+      "lines": 131
+    },
+    {
+      "path": "PLANO_DE_CORRECAO.md",
+      "kind": "text",
+      "bytes": 4330,
+      "lines": 197
+    },
+    {
+      "path": "README.md",
+      "kind": "text",
+      "bytes": 2320,
+      "lines": 103
+    },
+    {
+      "path": "RELATORIO_CONTINUIDADE_BMO.md",
+      "kind": "text",
+      "bytes": 20372,
+      "lines": 788
+    }
+  ],
+  "finishedAt": "2026-06-09T18:44:16"
+}

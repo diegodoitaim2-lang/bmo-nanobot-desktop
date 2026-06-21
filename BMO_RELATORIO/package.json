@@ -1,0 +1,136 @@
+﻿{
+  "name": "bmo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "BMO desktop AI assistant",
+  "author": "BMO",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "electron": "electron .",
+    "electron:build": "npm run build && electron-builder --win nsis --x64",
+    "tauri": "tauri",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.0",
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.16.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tauri-apps/cli": "^2.11.2",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "electron": "^42.3.0",
+    "electron-builder": "^26.8.1",
+    "eslint": "^10.3.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.6.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.59.2",
+    "vite": "^8.0.12"
+  },
+  "build": {
+    "appId": "com.bmo.desktop",
+    "productName": "BMO",
+    "directories": {
+      "output": "electron-release"
+    },
+    "afterPack": "build-support/after-pack.cjs",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "backend-dist/bmo_backend",
+        "to": "bmo_backend"
+      },
+      {
+        "from": "config",
+        "to": "config",
+        "filter": [
+          "**/*",
+          "!secrets.env",
+          "!**/secrets.env",
+          "!*.backup.env",
+          "!**/*.backup.env"
+        ]
+      },
+      {
+        "from": "nanobot",
+        "to": "nanobot"
+      },
+      {
+        "from": "bridge",
+        "to": "bridge"
+      },
+      {
+        "from": "NANOBOT_LICENSE",
+        "to": "NANOBOT_LICENSE"
+      },
+      {
+        "from": "NANOBOT_THIRD_PARTY_NOTICES.md",
+        "to": "NANOBOT_THIRD_PARTY_NOTICES.md"
+      },
+      {
+        "from": "runtime/piper",
+        "to": "piper"
+      },
+      {
+        "from": "runtime/whisper.cpp",
+        "to": "whisper.cpp"
+      },
+      {
+        "from": "runtime/sounds",
+        "to": "sounds"
+      },
+      {
+        "from": "runtime/ffmpeg",
+        "to": "ffmpeg"
+      },
+      {
+        "from": "runtime/wakeword.onnx",
+        "to": "wakeword.onnx"
+      },
+      {
+        "from": "src-tauri/icons/icon.ico",
+        "to": "icon.ico"
+      },
+      {
+        "from": "build-support/redist/vc_redist.x64.exe",
+        "to": "vc_redist.x64.exe"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "src-tauri/icons/icon.ico",
+      "artifactName": "BMO-v${version}-${arch}-setup.${ext}",
+      "signAndEditExecutable": false,
+      "signExts": [
+        "!.exe"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BMO",
+      "include": "build-support/electron-installer.nsh"
+    }
+  }
+}

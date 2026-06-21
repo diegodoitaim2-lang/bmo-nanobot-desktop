@@ -1,0 +1,33 @@
+{
+  "sessions": [
+    {
+      "id": "1781404041556",
+      "title": "lembre nesta conversa o codigo CTXB61145. responda som...",
+      "createdAt": 1781404041,
+      "messages": [
+        {
+          "role": "user",
+          "text": "lembre nesta conversa o codigo CTXB61145. responda somente guardado.",
+          "createdAt": 1781404041
+        },
+        {
+          "role": "bmo",
+          "text": "guardado",
+          "createdAt": 1781404041
+        },
+        {
+          "role": "user",
+          "text": "qual codigo eu pedi para lembrar nesta conversa? responda somente o codigo.",
+          "createdAt": 1781404044
+        },
+        {
+          "role": "bmo",
+          "text": "CTXB61145",
+          "createdAt": 1781404044
+        }
+      ],
+      "updatedAt": 1781404044,
+      "preview": "CTXB61145"
+    }
+  ]
+}

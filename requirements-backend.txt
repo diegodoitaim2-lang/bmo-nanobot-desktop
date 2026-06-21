@@ -1,0 +1,26 @@
+pyinstaller
+psutil
+numpy
+sounddevice
+openwakeword
+scipy
+scikit-learn
+tiktoken
+loguru
+pydantic
+PyYAML
+python-dotenv
+requests
+
+# Nanobot dependencies
+loguru
+pydantic
+pydantic_settings
+PyYAML
+python-dotenv
+tiktoken
+httpx
+filelock
+jinja2
+json_repair
+sniffio

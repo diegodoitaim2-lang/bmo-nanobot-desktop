@@ -1,0 +1,46 @@
+{
+  "sessions": [
+    {
+      "id": "1781403930700",
+      "title": "crie um subagente para pesquisar sobre IA",
+      "createdAt": 1781403930,
+      "messages": [
+        {
+          "role": "user",
+          "text": "crie um subagente para pesquisar sobre IA",
+          "createdAt": 1781403930
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Criei o subagente solicitado e ele ja aparece na lista.",
+          "createdAt": 1781403930
+        }
+      ],
+      "updatedAt": 1781403930,
+      "preview": "Prontinho. Criei o subagente solicitado e ele ja aparece na lista."
+    },
+    {
+      "id": "1781403930435",
+      "title": "crie um arquivo chamado codex_bmo_smoke_e78fcc.txt com...",
+      "createdAt": 1781403930,
+      "messages": [
+        {
+          "role": "user",
+          "text": "crie um arquivo chamado codex_bmo_smoke_e78fcc.txt com o texto validacao automatica do BMO",
+          "createdAt": 1781403930
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Eu criei o arquivo: codex_bmo_smoke_e78fcc.txt",
+          "createdAt": 1781403930
+        }
+      ],
+      "updatedAt": 1781403930,
+      "preview": "Prontinho. Eu criei o arquivo: codex_bmo_smoke_e78fcc.txt",
+      "metadata": {
+        "lastFilePath": "C:\\Users\\USER\\Desktop\\codex_bmo_smoke_e78fcc.txt",
+        "lastFileName": "codex_bmo_smoke_e78fcc.txt"
+      }
+    }
+  ]
+}

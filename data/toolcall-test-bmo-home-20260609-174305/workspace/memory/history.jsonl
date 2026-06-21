@@ -1,0 +1,3 @@
+{"cursor": 1, "timestamp": "2026-06-09 17:43", "content": "USER: cria um arquivo chamado teste.txt na área de trabalho\nBMO: Prontinho. Eu criei o arquivo: teste.txt"}
+{"cursor": 2, "timestamp": "2026-06-09 17:43", "content": "USER: cria um jogo da velha em Python e abre para mim\nBMO: Prontinho. Criei jogo_da_velha.py e abri o jogo para voce."}
+{"cursor": 3, "timestamp": "2026-06-09 17:43", "content": "USER: crie um subagente para pesquisar sobre IA\nBMO: Prontinho. Criei o subagente solicitado e ele ja aparece na lista."}

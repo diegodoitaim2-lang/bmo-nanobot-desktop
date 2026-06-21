@@ -1,0 +1,61 @@
+{
+  "sessions": [
+    {
+      "id": "1781404571615",
+      "title": "crie um subagente para pesquisar sobre IA",
+      "createdAt": 1781404571,
+      "messages": [
+        {
+          "role": "user",
+          "text": "crie um subagente para pesquisar sobre IA",
+          "createdAt": 1781404571
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Criei o subagente solicitado e ele ja aparece na lista.",
+          "createdAt": 1781404571
+        }
+      ],
+      "updatedAt": 1781404571,
+      "preview": "Prontinho. Criei o subagente solicitado e ele ja aparece na lista."
+    },
+    {
+      "id": "1781404571516",
+      "title": "Confirme os arquivos anexados em uma frase curta.",
+      "createdAt": 1781404571,
+      "messages": [
+        {
+          "role": "user",
+          "text": "Confirme os arquivos anexados em uma frase curta.",
+          "createdAt": 1781404571
+        },
+        {
+          "role": "bmo",
+          "text": "Arquivos recebidos: a imagem validacao_1.png e o texto validacao_2.txt.",
+          "createdAt": 1781404571
+        }
+      ],
+      "updatedAt": 1781404571,
+      "preview": "Arquivos recebidos: a imagem validacao_1.png e o texto validacao_2.txt.",
+      "metadata": {
+        "attachments": [
+          {
+            "name": "validacao_1.png",
+            "type": "image/png",
+            "kind": "image",
+            "size": 68,
+            "path": "C:\\Users\\USER\\Documents\\Codex\\bmo\\data\\audit\\bmo_home_attach_20260613_233601\\uploads\\20260613_233602_96bf04ee_validacao_1.png"
+          },
+          {
+            "name": "validacao_2.txt",
+            "type": "text/plain",
+            "kind": "text",
+            "size": 25,
+            "path": "C:\\Users\\USER\\Documents\\Codex\\bmo\\data\\audit\\bmo_home_attach_20260613_233601\\uploads\\20260613_233602_382da4dd_validacao_2.txt",
+            "text": "conteudo de validacao BMO"
+          }
+        ]
+      }
+    }
+  ]
+}

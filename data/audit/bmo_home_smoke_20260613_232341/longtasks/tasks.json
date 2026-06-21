@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "29438b7195dc",
+      "title": "Subagente de Pesquisa sobre IA",
+      "command": "",
+      "status": "concluido",
+      "progress": 100,
+      "createdAt": 1781403825,
+      "updatedAt": 1781403825,
+      "outputPath": "C:\\Users\\USER\\Documents\\Codex\\bmo\\data\\audit\\bmo_home_smoke_20260613_232341\\workspace\\longtask_29438b7195dc.txt",
+      "result": {
+        "ok": true,
+        "message": "Tarefa registrada: Subagente de Pesquisa sobre IA"
+      }
+    }
+  ]
+}

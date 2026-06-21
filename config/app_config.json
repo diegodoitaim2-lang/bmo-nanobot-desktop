@@ -1,0 +1,23 @@
+{
+  "appName": "BMO",
+  "theme": "led",
+  "backend": {
+    "host": "127.0.0.1",
+    "port": 8787
+  },
+  "visual": {
+    "mode": "full_body",
+    "bodyAsset": "src/assets/bmo/bmo-body.png",
+    "faceMode": "sprite_overlay"
+  },
+  "voice": {
+    "language": "pt-BR",
+    "model": "pt_BR-faber-medium.onnx",
+    "enabled": true
+  },
+  "onboardingComplete": true,
+  "language": "pt-BR",
+  "userName": "Usuario",
+  "hotkey": "Ctrl+Alt+B",
+  "chatFontScale": 1
+}

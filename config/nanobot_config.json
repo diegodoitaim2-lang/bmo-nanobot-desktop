@@ -1,0 +1,30 @@
+{
+  "agents": {
+    "defaults": {
+      "provider": "openrouter",
+      "model": "openai/gpt-oss-120b:free",
+      "temperature": 0.7,
+      "maxTokens": 8192,
+      "contextWindowTokens": 32768,
+      "reasoningEffort": "medium",
+      "maxToolIterations": 25,
+      "maxConcurrentSubagents": 3,
+      "timezone": "America/Sao_Paulo",
+      "disabledSkills": [],
+      "fallbackModels": []
+    }
+  },
+  "providers": {
+    "openrouter": {
+      "apiKey": "${OPENROUTER_API_KEY}",
+      "apiBase": "https://openrouter.ai/api/v1"
+    }
+  },
+  "tools": {
+    "web": {},
+    "exec": {},
+    "cliApps": {},
+    "my": {},
+    "imageGeneration": {}
+  }
+}

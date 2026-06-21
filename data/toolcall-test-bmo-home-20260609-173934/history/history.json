@@ -1,0 +1,46 @@
+{
+  "sessions": [
+    {
+      "id": "mandatory-game-test-final",
+      "title": "cria um jogo da velha em Python e abre para mim",
+      "createdAt": 1781037634,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um jogo da velha em Python e abre para mim",
+          "createdAt": 1781037634
+        },
+        {
+          "role": "bmo",
+          "text": "Eu nao consegui pensar em uma resposta agora. Tenta me perguntar de novo?",
+          "createdAt": 1781037634
+        }
+      ],
+      "updatedAt": 1781037634,
+      "preview": "Eu nao consegui pensar em uma resposta agora. Tenta me perguntar de novo?"
+    },
+    {
+      "id": "mandatory-file-test-final",
+      "title": "cria um arquivo chamado teste.txt na área de trabalho",
+      "createdAt": 1781037603,
+      "messages": [
+        {
+          "role": "user",
+          "text": "cria um arquivo chamado teste.txt na área de trabalho",
+          "createdAt": 1781037603
+        },
+        {
+          "role": "bmo",
+          "text": "Prontinho. Eu criei o arquivo: teste.txt",
+          "createdAt": 1781037603
+        }
+      ],
+      "updatedAt": 1781037603,
+      "preview": "Prontinho. Eu criei o arquivo: teste.txt",
+      "metadata": {
+        "lastFilePath": "C:\\Users\\USER\\Desktop\\teste.txt",
+        "lastFileName": "teste.txt"
+      }
+    }
+  ]
+}

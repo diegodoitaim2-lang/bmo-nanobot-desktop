@@ -1,0 +1,36 @@
+﻿{
+  "api": {
+    "host": "127.0.0.1",
+    "port": 8900,
+    "timeout": 180
+  },
+  "providers": {
+    "openrouter": {
+      "apiKey": "",
+      "apiBase": "https://openrouter.ai/api/v1",
+      "api_key": ""
+    }
+  },
+  "agents": {
+    "defaults": {
+      "provider": "openrouter",
+      "model": "openai/gpt-oss-120b:free",
+      "botName": "BMO",
+      "botIcon": "BMO",
+      "timezone": "America/Sao_Paulo",
+      "workspace": "C:/Users/USER/Documents/Codex/bmo/data/audit/bmo_home_restart_20260613_232850/workspace",
+      "temperature": 0.7,
+      "maxTokens": 4096,
+      "contextWindowTokens": 8192,
+      "reasoningEffort": "medium",
+      "fallbackModels": [
+        {
+          "model": "openai/gpt-oss-20b:free",
+          "provider": "openrouter"
+        }
+      ],
+      "disabledSkills": [],
+      "modelPreset": null
+    }
+  }
+}

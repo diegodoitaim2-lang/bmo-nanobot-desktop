@@ -1,0 +1,49 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+config/secrets.env
+
+# Build output
+dist/
+electron-release/
+backend-dist/
+build/pyinstaller/bmo_backend/
+
+# Backups
+_backup_sanitize/
+_backup_*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build artifacts
+build/
+bmo_backend.exe
+
+# Large binary models (use LFS instead)
+runtime/whisper.cpp/models/ggml-base.bin
+runtime/whisper.cpp/models/ggml-small.bin
+runtime/whisper.cpp/models/ggml-tiny.bin
+runtime/ffmpeg/ffmpeg.exe
+
+# Large runtime models (download separately)
+runtime/piper/*.onnx
+runtime/whisper.cpp/Win32/Release/ggml-vulkan.dll
