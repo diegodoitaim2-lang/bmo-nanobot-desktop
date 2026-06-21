@@ -447,12 +447,22 @@ function abortActiveFetches() {
   activeFetchControllers.clear()
 }
 
+function getBmoHeaders(): Record<string,string> {
+  const token = (window as any).bmoDesktop?.getBmoToken?.() ?? ''
+  const headers: Record<string,string> = {}
+  if (token) headers['X-BMO-Token'] = token
+  return headers
+}
+
 async function getJson<T>(path: string): Promise<T> {
   const controller = new AbortController()
   activeFetchControllers.add(controller)
   const timer = window.setTimeout(() => controller.abort(), 120000)
   try {
-    const response = await fetch(`http://127.0.0.1:8787${path}`, { signal: controller.signal })
+    const response = await fetch(`http://127.0.0.1:8787${path}`, {
+      headers: { ...getBmoHeaders() },
+      signal: controller.signal,
+    })
     const data = await response.json().catch(() => ({} as Record<string, unknown>))
     if (!response.ok) throw new Error(responseError(data, response.status))
     return data as T
@@ -469,7 +479,7 @@ async function postJson<T>(path: string, payload: unknown): Promise<T> {
   try {
     const response = await fetch(`http://127.0.0.1:8787${path}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...getBmoHeaders() },
       body: JSON.stringify(payload),
       signal: controller.signal,
     })

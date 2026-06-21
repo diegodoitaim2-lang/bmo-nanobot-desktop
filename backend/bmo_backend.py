@@ -28,7 +28,22 @@ from zoneinfo import ZoneInfo
 from rate_limit import check_rate_limit
 # import nanobot_bridge  # DEPRECATED - movido para backend/deprecated/. Runtime unificado via nanobot_integration.
 import tools as native_tools
+import secrets
 import nanobot_integration
+
+
+# ---------------------------------------------------------------------------
+# BMO API Authentication
+# Gera um token secreto na inicializacao e exige X-BMO-Token em toda request.
+# O Electron recebe o token via stdout na inicializacao.
+# ---------------------------------------------------------------------------
+_BMO_API_TOKEN: str = secrets.token_hex(32)
+
+
+def require_bmo_token(headers: dict[str, str]) -> bool:
+    """Verifica se o header X-BMO-Token corresponde ao token gerado."""
+    provided = headers.get("X-BMO-Token") or headers.get("x-bmo-token") or ""
+    return provided == _BMO_API_TOKEN
 
 
 def app_root() -> Path:
@@ -2896,8 +2911,14 @@ class BmoHandler(BaseHTTPRequestHandler):
     server_version = "BMONanobotBackend/1.0"
 
     def end_headers(self) -> None:
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        # Permitir apenas Origin local (Electron, localhost)
+        origin = self.headers.get("Origin") or ""
+        allowed_origins = ["", "http://localhost", "http://127.0.0.1", "file://", "app://"]
+        if any(origin.startswith(ao) for ao in allowed_origins):
+            self.send_header("Access-Control-Allow-Origin", origin or "*")
+        else:
+            self.send_header("Access-Control-Allow-Origin", "http://localhost")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-BMO-Token")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         super().end_headers()
 
@@ -2918,6 +2939,11 @@ class BmoHandler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         path, query = self.parsed_path()
+        # Rotas publicas (health e docs) nao precisam de token
+        if path not in {"/api/health"}:
+            if not require_bmo_token(self.headers):
+                self.send_json({"error": "Unauthorized - X-BMO-Token header required"}, status=401)
+                return
         if self.rate_limited(path):
             return
         started = time.perf_counter()
@@ -3048,6 +3074,9 @@ class BmoHandler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         path, _query = self.parsed_path()
+        if not require_bmo_token(self.headers):
+            self.send_json({"error": "Unauthorized - X-BMO-Token header required"}, status=401)
+            return
         if self.rate_limited(path):
             return
         started = time.perf_counter()
@@ -3391,6 +3420,9 @@ def cron_loop() -> None:
 
 def main() -> None:
     ensure_runtime_config()
+    # Printa o token de autenticacao para o Electron capturar
+    # Formato: BMO_TOKEN=<hex> em linha unica no stdout
+    print(f"BMO_TOKEN={_BMO_API_TOKEN}", flush=True)
     try:
         result = native_tools.longtask_mark_existing_finished_notified(tool_context())
         if result.get("marked"):

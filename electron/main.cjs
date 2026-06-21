@@ -93,11 +93,20 @@ function startBackend() {
   const exe = backendExecutable();
   if (exe) {
     mainLog(`starting packaged backend: ${exe}`);
+    // Capturar stdout para ler BMO_TOKEN
     backendProcess = spawn(exe, {
       cwd: path.dirname(exe),
       windowsHide: true,
-      stdio: 'ignore',
+      stdio: ['ignore', 'pipe', 'pipe'],
       detached: false,
+    });
+    backendProcess.stdout.on('data', (data) => {
+      const text = data.toString('utf8');
+      const match = text.match(/BMO_TOKEN=([a-f0-9]{64})/);
+      if (match) {
+        bmoApiToken = match[1];
+        mainLog('BMO API token captured from backend');
+      }
     });
     return;
   }
@@ -113,10 +122,18 @@ function startBackend() {
   const spawnOptions = {
     cwd: projectRoot(),
     windowsHide: true,
-    stdio: 'ignore',
+    stdio: ['ignore', 'pipe', 'pipe'],
     detached: false,
   };
   backendProcess = spawn(pythonCommand, [script], spawnOptions);
+  backendProcess.stdout.on('data', (data) => {
+    const text = data.toString('utf8');
+    const match = text.match(/BMO_TOKEN=([a-f0-9]{64})/);
+    if (match) {
+      bmoApiToken = match[1];
+      mainLog('BMO API token captured from dev backend');
+    }
+  });
   backendProcess.once('error', (error) => {
     dialog.showErrorBox('BMO', `Nao consegui iniciar o backend invisivel com pythonw.\n${error.message}`);
   });
@@ -492,6 +509,8 @@ function createWindow() {
 }
 
 if (gotSingleInstanceLock) {
+  ipcMain.handle('bmo:get-token', async () => bmoApiToken);
+
   ipcMain.handle('bmo:save-file', async (_event, options) => {
     try {
       const result = await dialog.showSaveDialog({
