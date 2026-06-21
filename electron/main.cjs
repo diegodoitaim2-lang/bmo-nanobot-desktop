@@ -93,7 +93,8 @@ function startBackend() {
   const exe = backendExecutable();
   if (exe) {
     mainLog(`starting packaged backend: ${exe}`);
-    // Capturar stdout para ler BMO_TOKEN
+    // Capturar stdout com buffer para chunks parciais
+    let stdoutBuf = '';
     backendProcess = spawn(exe, {
       cwd: path.dirname(exe),
       windowsHide: true,
@@ -101,8 +102,8 @@ function startBackend() {
       detached: false,
     });
     backendProcess.stdout.on('data', (data) => {
-      const text = data.toString('utf8');
-      const match = text.match(/BMO_TOKEN=([a-f0-9]{64})/);
+      stdoutBuf += data.toString('utf8');
+      const match = stdoutBuf.match(/BMO_TOKEN=([a-f0-9]{64})/);
       if (match) {
         bmoApiToken = match[1];
         mainLog('BMO API token captured from backend');
@@ -126,9 +127,10 @@ function startBackend() {
     detached: false,
   };
   backendProcess = spawn(pythonCommand, [script], spawnOptions);
+  let stdoutBuf = '';
   backendProcess.stdout.on('data', (data) => {
-    const text = data.toString('utf8');
-    const match = text.match(/BMO_TOKEN=([a-f0-9]{64})/);
+    stdoutBuf += data.toString('utf8');
+    const match = stdoutBuf.match(/BMO_TOKEN=([a-f0-9]{64})/);
     if (match) {
       bmoApiToken = match[1];
       mainLog('BMO API token captured from dev backend');

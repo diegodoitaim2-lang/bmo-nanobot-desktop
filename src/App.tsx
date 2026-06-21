@@ -447,49 +447,84 @@ function abortActiveFetches() {
   activeFetchControllers.clear()
 }
 
-function getBmoHeaders(): Record<string,string> {
-  const token = (window as any).bmoDesktop?.getBmoToken?.() ?? ''
-  const headers: Record<string,string> = {}
-  if (token) headers['X-BMO-Token'] = token
-  return headers
+// Cache do token BMO — atualizado assincronamente pelo Electron
+let _bmoTokenCache = ''
+let _bmoTokenPromise: Promise<string> | null = null
+
+async function _ensureBmoToken(): Promise<string> {
+  if (_bmoTokenCache) return _bmoTokenCache
+  if (_bmoTokenPromise) return _bmoTokenPromise
+  _bmoTokenPromise = _resolveBmoToken()
+  return _bmoTokenPromise
+}
+
+async function _resolveBmoToken(): Promise<string> {
+  const maxRetries = 50  // ~5 segundos
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      const token = await (window as any).bmoDesktop?.getBmoToken?.() ?? ''
+      if (token) {
+        _bmoTokenCache = token
+        return token
+      }
+    } catch {
+      // ignore — backend pode ainda nao ter iniciado
+    }
+    await new Promise(r => setTimeout(r, 100))
+  }
+  return ''  // timeout — roda sem token (dev mode)
+}
+
+async function getBmoHeaders(): Promise<Record<string,string>> {
+  const token = await _ensureBmoToken()
+  if (token) return { 'X-BMO-Token': token }
+  return {}
+}
+
+async function _fetchWithRetry(path: string, options: RequestInit, retries: number = 3): Promise<Response> {
+  for (let attempt = 0; attempt < retries; attempt++) {
+    const controller = new AbortController()
+    activeFetchControllers.add(controller)
+    const timer = window.setTimeout(() => controller.abort(), 120000)
+    try {
+      // Em cada tentativa, re-obter headers (token pode ter chegado)
+      const headers = { ...(options.headers || {}), ...(await getBmoHeaders()) }
+      const response = await fetch(`http://127.0.0.1:8787${path}`, { ...options, headers, signal: controller.signal })
+      if (response.status === 401 && attempt < retries - 1) {
+        // Token ausente ou invalido — esperar e retentar
+        _bmoTokenCache = ''  // Forcar re-busca do token
+        _bmoTokenPromise = null
+        await new Promise(r => setTimeout(r, 500))
+        continue
+      }
+      return response
+    } finally {
+      activeFetchControllers.delete(controller)
+      window.clearTimeout(timer)
+    }
+  }
+  // Todas as tentativas falharam
+  const lastController = new AbortController()
+  activeFetchControllers.add(lastController)
+  return fetch(`http://127.0.0.1:8787${path}`, { ...options, signal: lastController.signal })
 }
 
 async function getJson<T>(path: string): Promise<T> {
-  const controller = new AbortController()
-  activeFetchControllers.add(controller)
-  const timer = window.setTimeout(() => controller.abort(), 120000)
-  try {
-    const response = await fetch(`http://127.0.0.1:8787${path}`, {
-      headers: { ...getBmoHeaders() },
-      signal: controller.signal,
-    })
-    const data = await response.json().catch(() => ({} as Record<string, unknown>))
-    if (!response.ok) throw new Error(responseError(data, response.status))
-    return data as T
-  } finally {
-    activeFetchControllers.delete(controller)
-    window.clearTimeout(timer)
-  }
+  const response = await _fetchWithRetry(path, {})
+  const data = await response.json().catch(() => ({} as Record<string, unknown>))
+  if (!response.ok) throw new Error(responseError(data, response.status))
+  return data as T
 }
 
 async function postJson<T>(path: string, payload: unknown): Promise<T> {
-  const controller = new AbortController()
-  activeFetchControllers.add(controller)
-  const timer = window.setTimeout(() => controller.abort(), 120000)
-  try {
-    const response = await fetch(`http://127.0.0.1:8787${path}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...getBmoHeaders() },
-      body: JSON.stringify(payload),
-      signal: controller.signal,
-    })
-    const data = await response.json().catch(() => ({} as Record<string, unknown>))
-    if (!response.ok) throw new Error(responseError(data, response.status))
-    return data as T
-  } finally {
-    activeFetchControllers.delete(controller)
-    window.clearTimeout(timer)
-  }
+  const response = await _fetchWithRetry(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  const data = await response.json().catch(() => ({} as Record<string, unknown>))
+  if (!response.ok) throw new Error(responseError(data, response.status))
+  return data as T
 }
 
 const StatusPill = memo(function StatusPill({ ok, label }: { ok?: boolean; label: string }) {
