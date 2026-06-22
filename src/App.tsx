@@ -651,6 +651,9 @@ function App() {
     { role: 'bmo', text: 'Ola! Eu sou o BMO. Como posso te ajudar hoje?' },
   ])
   const [faceFrameIndex, setFaceFrameIndex] = useState(0)
+  /* Estados para sincronizacao boca-audio */
+  const [bocaAudioDurationMs, setBocaAudioDurationMs] = useState(0)
+  const [bocaAudioStarted, setBocaAudioStarted] = useState(0)
   const ui = uiText[language]
   const statusLabels = ui.statusByState
   const panelTitle = (panel: Panel) => ui.nav[panel] || panel
@@ -716,15 +719,34 @@ function App() {
     if (faceFrames.length <= 1) {
       return
     }
+    if (bmoState === 'speaking' && bocaAudioDurationMs > 0) {
+      // Sincronizado com duracao real do audio
+      // Cada ciclo de frames = faceFrames.length * frameDelay
+      const framesPerCycle = faceFrames.length
+      // Queremos que a animacao complete ~2 ciclos durante o audio
+      const cycles = 2
+      const totalFrames = framesPerCycle * cycles
+      const frameDelay = Math.max(40, Math.floor(bocaAudioDurationMs / totalFrames))
+      const startedAt = bocaAudioStarted || Date.now()
+      const timer = window.setInterval(() => {
+        setFaceFrameIndex((frame) => {
+          const elapsed = Date.now() - startedAt
+          if (elapsed >= bocaAudioDurationMs) {
+            return 0 // volta ao frame inicial
+          }
+          return (frame + 1) % framesPerCycle
+        })
+      }, frameDelay)
+      return () => window.clearInterval(timer)
+    }
     const delay = faceFrameDelayByState[bmoState] ?? 500
     const timer = window.setInterval(() => {
       setFaceFrameIndex((frame) => {
-        // Sequencial normal — animacao mais suave
         return (frame + 1) % faceFrames.length
       })
     }, delay)
     return () => window.clearInterval(timer)
-  }, [bmoState, faceFrames.length])
+  }, [bmoState, faceFrames.length, bocaAudioDurationMs])
 
   function markExistingFinishedSubagentsSeen(items: SubagentItem[]) {
     let changed = false
@@ -925,18 +947,21 @@ function App() {
     }
   }
 
-  async function speak(reply: string) {
-    if (!voiceEnabled) return
+  async function speak(reply: string): Promise<number> {
+    // Retorna duracao estimada em ms, 0 se falhou/desabilitado
+    if (!voiceEnabled) return 0
     setStateWithStatus('speaking')
     const controller = new AbortController()
     const timer = window.setTimeout(() => controller.abort(), 240000)
     activeFetchControllers.add(controller)
+    let durationMs = 0
     try {
       await new Promise((resolve) => window.requestAnimationFrame(resolve))
       // Divide texto longo em chunks para evitar timeout e sobrecarga do TTS
       const MAX_CHUNK_LENGTH = 800
       if (reply.length <= MAX_CHUNK_LENGTH) {
-        await postJson('/api/speak', { text: reply, voice: voiceModel })
+        const result = await postJson<{ ok: boolean; durationMs?: number }>('/api/speak', { text: reply, voice: voiceModel })
+        if (result.durationMs) durationMs = result.durationMs
       } else {
         const chunks: string[] = []
         for (let i = 0; i < reply.length; i += MAX_CHUNK_LENGTH) {
@@ -951,18 +976,25 @@ function App() {
         }
         for (const chunk of chunks) {
           if (controller.signal.aborted) break
-          await postJson('/api/speak', { text: chunk, voice: voiceModel })
+          const result = await postJson<{ ok: boolean; durationMs?: number }>('/api/speak', { text: chunk, voice: voiceModel })
+          if (result.durationMs) durationMs += result.durationMs
         }
       }
     } catch (error) {
-      // Nao mostra erro de voz como mensagem no chat — apenas no log/toast
       const message = error instanceof Error ? error.message : 'A voz falhou agora.'
       setLastError(message)
     } finally {
       activeFetchControllers.delete(controller)
       window.clearTimeout(timer)
+      _syncBoca(0) // Garante que animacao para mesmo se o promise terminar
       setStateWithStatus('idle')
     }
+    return durationMs
+  }
+
+  function _syncBoca(durationMs: number) {
+    setBocaAudioDurationMs(durationMs)
+    setBocaAudioStarted(durationMs > 0 ? Date.now() : 0)
   }
 
   async function showBmoReplyStreaming(reply: string) {
@@ -1094,7 +1126,10 @@ function App() {
         setStateWithStatus('idle', 'Tarefa criada')
       }
       void refreshHistory()
-      await speak(reply)
+      // Speak em paralelo — nao bloqueia o estado idle
+      speak(reply).then((dur) => {
+        if (dur > 0) _syncBoca(dur)
+      })
       setStateWithStatus('idle')
     } catch (error) {
       const raw = error instanceof Error ? error.message : 'Backend indisponivel'
@@ -1126,7 +1161,9 @@ function App() {
         { role: 'bmo', text: data.reply },
       ])
       void refreshHistory()
-      await speak(data.reply)
+      speak(data.reply).then((dur) => {
+        if (dur > 0) _syncBoca(dur)
+      })
       setStateWithStatus('idle')
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Nao consegui ouvir agora.'

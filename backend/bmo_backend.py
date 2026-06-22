@@ -2166,12 +2166,18 @@ def speak_text(text: str, voice: str = "") -> dict[str, Any]:
     VOICE_DIR.mkdir(parents=True, exist_ok=True)
     wav_path = VOICE_DIR / "bmo_reply.wav"
     startupinfo, creationflags = windows_process_options()
+    t0 = time.perf_counter()
     command = [str(PIPER_EXE), "--model", str(selected), "--output_file", str(wav_path), "--espeak_data", str(PIPER_ESPEAK), "--quiet"]
     subprocess.run(command, input=speech, text=True, encoding="utf-8", stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True, startupinfo=startupinfo, creationflags=creationflags, timeout=300)
+    piper_ms = round((time.perf_counter() - t0) * 1000)
+    audio_bytes = wav_path.stat().st_size
+    # Duração estimada do áudio em ms (WAV 16-bit mono 22050Hz)
+    audio_duration_ms = round((audio_bytes - 44) / (22050 * 2) * 1000) if audio_bytes > 44 else 0
     if os.name == "nt":
         import winsound
-        winsound.PlaySound(str(wav_path), winsound.SND_FILENAME)
-    return {"ok": True, "audio": str(wav_path), "voice": selected.name}
+        winsound.PlaySound(str(wav_path), winsound.SND_FILENAME | winsound.SND_ASYNC)
+    log_event("speak_completed", piper_ms=piper_ms, audio_bytes=audio_bytes, audio_duration_ms=audio_duration_ms, voice=selected.name)
+    return {"ok": True, "audio": str(wav_path), "voice": selected.name, "durationMs": audio_duration_ms, "piperMs": piper_ms}
 
 
 def select_ui_sound(kind: str, language: str = "pt-BR") -> Path | None:
@@ -2840,16 +2846,17 @@ def create_subagent_from_message(message: str) -> dict[str, Any] | None:
     if isinstance(task, dict) and task.get("id"):
         subagent.setdefault("id", task.get("id"))
         subagent.setdefault("status", task.get("status"))
-    # Pegar summary se disponivel
-    summary = str(result.get("summary", "")) if isinstance(result, dict) else ""
-    task_id = (task or {}).get("id", "") if isinstance(task, dict) else ""
+    # Determinar se ja foi concluido ou ainda esta rodando
+    status = (task or {}).get("status", "") or str(result.get("status", ""))
     output_path = str(result.get("outputPath", "")) if isinstance(result, dict) else ""
-    if output_path:
-        reply = f"Prontinho. Criei o subagente e salvei o resultado em {output_path}."
-    elif summary:
-        reply = f"Prontinho. Subagente concluiu: {summary}"
+    summary = str(result.get("summary", "")) if isinstance(result, dict) else ""
+    if output_path and summary:
+        # Subagente ja concluiu (execucao s�ncrona pelo nanobot)
+        reply = f"Prontinho. Subagente concluiu: {summary}. Salvei o resultado em {output_path}."
+    elif status in {"concluido", "finished", "completed"} and summary:
+        reply = f"Prontinho. Subagente concluiu com sucesso: {summary}"
     else:
-        reply = "Prontinho. Criei o subagente e ele ja esta trabalhando."
+        reply = "Prontinho. Criei o subagente e ele ja esta trabalhando. Vou avisar quando o resultado chegar."
     return {
         "reply": reply,
         "subagent": subagent,
@@ -3376,10 +3383,14 @@ class BmoHandler(BaseHTTPRequestHandler):
             t_llm_start = time.perf_counter()
             reply = ask_nanobot(model_message, language, session_id)
             t_llm_ms = round((time.perf_counter() - t_llm_start) * 1000)
+            t_save_start = time.perf_counter()
             session = save_chat_turn(session_id, message, reply, {"attachments": attachments} if attachments else None)
-            total_ms = round((time.perf_counter() - _chat_started) * 1000)
-            log_event("chat_completed", session=session_id, total_ms=total_ms, llm_ms=t_llm_ms, reply_len=len(reply))
+            t_save_ms = round((time.perf_counter() - t_save_start) * 1000)
+            t_before_send = time.perf_counter()
             self.send_json({"reply": reply, "sessionId": session.get("id"), "attachments": attachments})
+            t_send_ms = round((time.perf_counter() - t_before_send) * 1000)
+            total_ms = round((time.perf_counter() - _chat_started) * 1000)
+            log_event("chat_completed", session=session_id, total_ms=total_ms, llm_ms=t_llm_ms, save_ms=t_save_ms, send_ms=t_send_ms, reply_len=len(reply))
         finally:
             _chat_busy.clear()
 
